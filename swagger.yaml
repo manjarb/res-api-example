@@ -1,0 +1,50 @@
+swagger: '2.0'
+x-api-id: rest-api-example
+info:
+  version: 1.0.0
+  title: rest-api-example
+  license:
+    name: ISC
+paths:
+  /:
+    get:
+      description: Retuns the name of the service
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ServiceName'
+        '500':
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  ServiceName:
+    type: object
+    required:
+      - service_name
+    properties:
+      service_name:
+        type: string
+        description: service name
+  Error:
+    type: object
+    required:
+      - error_code
+      - error_message
+    properties:
+      error_code:
+        type: string
+        description: error code
+      error_message:
+        type: string
+        description: error message
+produces:
+  - application/json
+consumes:
+  - application/json
+  - application/x-www-form-urlencoded
+schemes:
+  - https
+host: 'localhost:8500'
+basePath: /v1
