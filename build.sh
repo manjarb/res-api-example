@@ -14,6 +14,9 @@ export BUILDNUMBER=`date +%Y%m%d%H%M`
 echo "Building rest-api-example version $BUILDNUMBER..."
 docker build --rm -t rest-api-example:$BUILDNUMBER -f env/$1/Dockerfile .
 
+echo "Removing previous containers"
+docker rm -f rest-api-example
+
 echo "Running rest-api-example version $BUILDNUMBER..."
 docker run -d -t --name rest-api-example -p 8500:8500 rest-api-example:$BUILDNUMBER
 
