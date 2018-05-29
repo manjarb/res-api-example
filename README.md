@@ -7,6 +7,7 @@
 3. TypeORM 0.2.x
 4. TypeScript 2.x
 5. Docker (Optional)
+6. Swagger
 
 ## Steps to run locally on your terminal
     1. Create a user table  by executing the schema from  /schema/user.sql.
