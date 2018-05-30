@@ -21,7 +21,8 @@
         "removeComments": true
     },
     "include": [
-        "src/**/*.ts"
+        "app/src/**/*.ts",
+        "app/test/**/*.ts"
     ],
     "exclude": [
         "node_modules",

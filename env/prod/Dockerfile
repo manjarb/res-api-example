@@ -12,7 +12,7 @@ COPY pm2.json /var/www/html/rest-api-example/
 COPY package.json /var/www/html/rest-api-example/
 COPY package-lock.json /var/www/html/rest-api-example/
 
-COPY dist /var/www/html/rest-api-example/dist
+COPY dist/src /var/www/html/rest-api-example
 
 WORKDIR /var/www/html/rest-api-example
 
