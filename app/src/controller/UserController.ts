@@ -23,15 +23,12 @@ export default class UserController {
         } catch (err) {
             const msg = getErrorMessage(err);
             logger.error(msg);
-            if (!err.statusCode) {
-                res.status(statusCode.INTERNAL_SERVER_ERROR);
-                res.json(errorMsg(ErrorCode.InternalServerError, msg));
-            } else if (err.statusCode === statusCode.BAD_REQUEST) {
+            if (err.statusCode === statusCode.BAD_REQUEST) {
                 res.status(statusCode.BAD_REQUEST);
                 res.json(errorMsg(ErrorCode.BadRequest, msg));
             } else {
-                res.status(err.statusCode);
-                res.end();
+                res.status(statusCode.INTERNAL_SERVER_ERROR);
+                res.json(errorMsg(ErrorCode.InternalServerError, msg));
             }
         }
     }
@@ -48,23 +45,20 @@ export default class UserController {
         } catch (err) {
             const msg = getErrorMessage(err);
             logger.error(msg);
-            if (!err.statusCode) {
-                res.status(statusCode.INTERNAL_SERVER_ERROR);
-                res.json(errorMsg(ErrorCode.InternalServerError, msg));
-            } else if (err.statusCode === statusCode.BAD_REQUEST) {
+            if (err.statusCode === statusCode.BAD_REQUEST) {
                 res.status(statusCode.BAD_REQUEST);
                 res.json(errorMsg(ErrorCode.BadRequest, msg));
             } else {
-                res.status(err.statusCode);
-                res.end();
+                res.status(statusCode.INTERNAL_SERVER_ERROR);
+                res.json(errorMsg(ErrorCode.InternalServerError, msg));
             }
         }
     }
 
     async save(req: Request, res: Response, next: NextFunction) {
         try {
-            req.checkBody('firstName').notEmpty().withMessage('firstName cannot be empty').isAlphanumeric().withMessage('firstName is not valid');
-            req.checkBody('lastName').notEmpty().withMessage('lastName cannot be empty').isAlphanumeric().withMessage('lastName is not valid');
+            req.checkBody('firstName').notEmpty().withMessage('firstName cannot be empty');
+            req.checkBody('lastName').notEmpty().withMessage('lastName cannot be empty');
             if (req.body.age) {
                 req.checkBody('age').isNumeric().withMessage('age is not valid');
             }
@@ -75,20 +69,17 @@ export default class UserController {
                 res.json(errorMsg(ErrorCode.BadRequest, JSON.stringify(errors)));
             } else {
                 const user: User = await this.userRepository.save(req.body);
-                res.json(<UserModel>user);
+                res.status(statusCode.CREATED).json(<UserModel>user);
             }
         } catch (err) {
             const msg = getErrorMessage(err);
             logger.error(msg);
-            if (!err.statusCode) {
-                res.status(statusCode.INTERNAL_SERVER_ERROR);
-                res.json(errorMsg(ErrorCode.InternalServerError, msg));
-            } else if (err.statusCode === statusCode.BAD_REQUEST) {
+            if (err.statusCode === statusCode.BAD_REQUEST) {
                 res.status(statusCode.BAD_REQUEST);
                 res.json(errorMsg(ErrorCode.BadRequest, msg));
             } else {
-                res.status(err.statusCode);
-                res.end();
+                res.status(statusCode.INTERNAL_SERVER_ERROR);
+                res.json(errorMsg(ErrorCode.InternalServerError, msg));
             }
         }
     }
@@ -101,15 +92,12 @@ export default class UserController {
         } catch (err) {
             const msg = getErrorMessage(err);
             logger.error(msg);
-            if (!err.statusCode) {
-                res.status(statusCode.INTERNAL_SERVER_ERROR);
-                res.json(errorMsg(ErrorCode.InternalServerError, msg));
-            } else if (err.statusCode === statusCode.BAD_REQUEST) {
+            if (err.statusCode === statusCode.BAD_REQUEST) {
                 res.status(statusCode.BAD_REQUEST);
                 res.json(errorMsg(ErrorCode.BadRequest, msg));
             } else {
-                res.status(err.statusCode);
-                res.end();
+                res.status(statusCode.INTERNAL_SERVER_ERROR);
+                res.json(errorMsg(ErrorCode.InternalServerError, msg));
             }
         }
     }

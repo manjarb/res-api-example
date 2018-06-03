@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "lib": [
-            "es5",
-            "es6"
+            "dom",
+            "es7"
         ],
         "target": "es2017",
         "types": [
@@ -21,7 +21,8 @@
         "removeComments": true
     },
     "include": [
-        "src/**/*.ts"
+        "app/src/**/*.ts",
+        "app/test/**/*.ts"
     ],
     "exclude": [
         "node_modules",

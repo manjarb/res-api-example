@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import * as express from 'express';
-import * as http from 'http';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as expressValidator from 'express-validator';
@@ -19,18 +18,18 @@ const options = {
     'synchronize': false,
     'logging': (env === 'prod') ? false : true,
     'entities': [
-        'dist/entity/*.js'
+        'dist/src/entity/*.js'
     ],
     'migrations': [
-        'dist/migration/**/*.js'
+        'dist/src/migration/**/*.js'
     ],
     'subscribers': [
-        'dist/subscriber/**/*.js'
+        'dist/src/subscriber/**/*.js'
     ],
     'cli': {
-        'entitiesDir': 'dist/entity',
-        'migrationsDir': 'dist/migration',
-        'subscribersDir': 'dist/subscriber'
+        'entitiesDir': 'dist/src/entity',
+        'migrationsDir': 'dist/src/migration',
+        'subscribersDir': 'dist/src/subscriber'
     }
 };
 
@@ -51,7 +50,9 @@ createConnection(db).then(async connection => {
     const app = express();
     app.use(compression());
     app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({
+        limit: '100k'
+    }));
     app.use(expressValidator());
 
     // response header middleware
@@ -93,7 +94,7 @@ createConnection(db).then(async connection => {
     });
 
     // start express server
-    http.createServer(app).listen(port);
+    app.listen(port);
     logger.info(`App running on http://localhost:${port}`);
 
 }).catch(err => {

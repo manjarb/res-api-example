@@ -1,7 +1,7 @@
 {
     "apps": [{
         "name": "rest-api-example",
-        "script": "dist/index.js",
+        "script": "dist/src/index.js",
         "instances": "2",
         "log_date_format": "YYYY-MM-DD HH:mm Z",
         "max_memory_restart": "150M",

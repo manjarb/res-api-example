@@ -10,5 +10,5 @@ export const config = {
     password: 'test'
 };
 
-// the config file can be replaced by 
-// export const config = JSON.parse(fs.readFileSync(configFile, 'utf8')); 
+// the config file can be replaced by
+// export const config = JSON.parse(fs.readFileSync(configFile, 'utf8'));

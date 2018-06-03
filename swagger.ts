@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as swaggerInline from 'swagger-inline';
 
-swaggerInline(['src/**/*.ts'], {
+swaggerInline(['app/src/**/*.ts'], {
     base: 'swagger.yaml',
     format: '.yaml'
 }).then((generatedSwagger) => {
