@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import * as express from 'express';
-import * as http from 'http';
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as expressValidator from 'express-validator';
@@ -95,7 +94,7 @@ createConnection(db).then(async connection => {
     });
 
     // start express server
-    http.createServer(app).listen(port);
+    app.listen(port);
     logger.info(`App running on http://localhost:${port}`);
 
 }).catch(err => {

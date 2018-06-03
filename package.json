@@ -12,7 +12,7 @@
         "testing": "pm2-runtime start pm2.json --env testing",
         "dev": "NODE_ENV=dev PORT=8500 nodemon -e js,json node dist/src/index.js",
         "update": "sudo npm update --save && npm update --save-dev",
-        "test": "mocha -- dist/test/*.js",
+        "test": "NODE_ENV=dev PORT=8500  mocha -- dist/test/*.js",
         "swagger": "ts-node swagger.ts",
         "nsp": "nsp check",
         "snyk": "snyk test",

@@ -10,7 +10,8 @@
 6. Swagger
 
 ## Running test cases
-    npm test    
+    1. Starting the server - npm run dev
+    2. Run the test cases - npm test    
 
 ## Steps to run locally on your terminal
     1. Create a user table  by executing the schema from  /schema/user.sql.

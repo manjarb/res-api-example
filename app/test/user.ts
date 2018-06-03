@@ -4,7 +4,7 @@ import chaiHttp = require('chai-http');
 
 const expect = chai.expect;
 chai.use(chaiHttp);
-const app = 'http://localhost:8500';
+const server = 'http://localhost:8500';
 
 let userId = 1; // default user id
 
@@ -22,7 +22,7 @@ describe('API endpoint /users', function () {
 
     // GET - Check server
     it('should return service name', function () {
-        return chai.request(app)
+        return chai.request(server)
             .get('/')
             .then(function (res) {
                 expect(res).to.have.status(200);
@@ -33,7 +33,7 @@ describe('API endpoint /users', function () {
 
     // GET - List all users
     it('should return all users', function () {
-        return chai.request(app)
+        return chai.request(server)
             .get('/users')
             .then(function (res) {
                 if (res.body && res.body[0].id) {
@@ -47,7 +47,7 @@ describe('API endpoint /users', function () {
 
     // GET - Get a user details
     it(`Get a user details of user with id ${userId}`, function () {
-        return chai.request(app)
+        return chai.request(server)
             .get(`/users/${userId}`)
             .then(function (res) {
                 expect(res).to.have.status(200);
@@ -58,7 +58,7 @@ describe('API endpoint /users', function () {
 
     // GET - Invalid path
     it('should return not found', function () {
-        return chai.request(app)
+        return chai.request(server)
             .get('/user')
             .then(function (res) {
                 expect(res.body).to.be.an('object');
@@ -75,7 +75,7 @@ describe('API endpoint /users', function () {
             lastName: 'Nagarethinam',
             age: 27
         };
-        return chai.request(app)
+        return chai.request(server)
             .post('/users')
             .send(payload)
             .then(function (res) {
@@ -97,7 +97,7 @@ describe('API endpoint /users', function () {
             firstName: `Saravana`,
             age: 27
         };
-        return chai.request(app)
+        return chai.request(server)
             .post('/users')
             .send(payload)
             .then(function (res) {
@@ -109,7 +109,7 @@ describe('API endpoint /users', function () {
 
     // DELETE - DELETE a user by id
     it(`should delete user of id ${userId}`, function () {
-        return chai.request(app)
+        return chai.request(server)
             .del(`/users/${userId}`)
             .then(function (res) {
                 expect(res).to.have.status(200);
