@@ -9,6 +9,9 @@
 5. Docker (Optional)
 6. Swagger
 
+## Running test cases
+    npm test    
+
 ## Steps to run locally on your terminal
     1. Create a user table  by executing the schema from  /schema/user.sql.
     2. Modify the /app/src/config.ts. (Replace it with the a database connection details)
